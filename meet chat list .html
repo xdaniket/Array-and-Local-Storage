@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .userElem {
+        border: 1px solid black;
+        padding: 12px;
+        background-color: rgb(159, 124, 124);
+      }
+      #chatContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .btn {
+        background-color: red;
+        padding: 6px;
+        color: white;
+        border: none;
+        margin-top: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .btn2 {
+        width: 50%;
+        height: 42px;
+        margin-left: 390px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chatContainer"></div>
+    <button class="btn btn2" onclick="addNewUser()">
+      <strong>Add User</strong>
+    </button>
+  </body>
+</html>
+<script>
+  const userList = [
+    {
+      fName: "Aniket Thakur",
+      city: "Sehore",
+      Age: 22,
+    },
+    {
+      fName: "Pihu Thakur",
+      city: "Bhopal",
+      Age: 4,
+    },
+    {
+      fName: "Aaru Thakur",
+      city: "Raisen",
+      Age: 3,
+    },
+  ];
+
+  const chatContainerElem = document.getElementById("chatContainer");
+  for (let i = 0; i < userList.length; i++) {
+    addNewUser(userList[i].fName, userList[i].city, userList[i].Age);
+
+    function addNewUser(fName = "Pari Thakur", city = "Vidisha", Age = 1) {
+      const userElem = document.createElement("div");
+      userElem.className = "userElem";
+
+      const userfName = document.createElement("h3");
+      userfName.innerText = fName;
+
+      const usercity = document.createElement("h3");
+      usercity.innerText = city;
+
+      const userAge = document.createElement("h3");
+      userAge.innerText = Age;
+
+      const removeBtn = document.createElement("button");
+      removeBtn.innerHTML = "<b>Remove</b>";
+      removeBtn.className = "btn";
+      removeBtn.addEventListener("click", () => {
+        userElem.remove();
+      });
+
+      userElem.appendChild(userfName);
+      userElem.appendChild(usercity);
+      userElem.appendChild(userAge);
+      userElem.appendChild(removeBtn);
+
+      chatContainerElem.appendChild(userElem);
+    }
+  }
+</script>
